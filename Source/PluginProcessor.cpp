@@ -155,6 +155,11 @@ void SimpleGainSliderAudioProcessor::processBlock (juce::AudioBuffer<float>& buf
         auto* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
+        for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
+        {
+            channelData[sample] = buffer.getSample(channel, sample) * rawVolume;
+        }
+
     }
 }
 
